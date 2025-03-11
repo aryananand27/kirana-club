@@ -7,11 +7,9 @@ const path = require('path');
 
 const PORT = process.env.PORT || 3000;
 
-// Middleware
 app.use(express.json());
 app.use('/api', jobRoutes);
 
-// Ensure data folder and CSV file exists
 const dataDir = path.join(__dirname, 'data');
 if (!fs.existsSync(dataDir)) fs.mkdirSync(dataDir);
 

@@ -5,7 +5,7 @@ const csvParser = require('csv-parser');
 
 const csvPath = path.join(__dirname, '../data/jobs.csv');
 
-// CSV header definition
+
 const csvHeaders = [
   { id: 'job_id', title: 'job_id' },
   { id: 'store_id', title: 'store_id' },
@@ -16,7 +16,7 @@ const csvHeaders = [
   { id: 'visit_time', title: 'visit_time' },
 ];
 
-// Function to initialize CSV with headers if needed
+
 const initializeCsv = async () => {
   if (!fs.existsSync(csvPath) || fs.statSync(csvPath).size === 0) {
     const headerLine = csvHeaders.map(h => h.title).join(',') + '\n';
@@ -30,13 +30,11 @@ const csvWriter = createCsvWriter({
   append: true,
 });
 
-// Append job results
 const appendJobResult = async (rows) => {
-  await initializeCsv(); // Ensure header is present
+  await initializeCsv(); 
   await csvWriter.writeRecords(rows);
 };
 
-// Read job results by job ID
 const readJobsById = async (jobId) => {
   return new Promise((resolve, reject) => {
     const results = [];
